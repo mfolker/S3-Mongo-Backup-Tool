@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: This stack deploys S3 bucket
+
+Resources:
+  DatabaseBackupBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub database-backup-bucket-${AWS::Region}
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+
+Outputs:
+  DatabaseBackupBucket:
+    Description: "The ARN of the database backup bucket."
+    Value: !GetAtt "DatabaseBackupBucket.Arn"
+    Export:
+      Name: !Join [":", [!Ref "AWS::StackName", "DatabaseBackupBucket"]]
