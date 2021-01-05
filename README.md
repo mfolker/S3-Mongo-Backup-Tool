@@ -9,9 +9,9 @@ Databases are only backed up when they have been altered.
 
 ## 1.1. On going tasks
 
-- Install AWS CLI
-- S3 bucket template
 - deploy scripts
+  - Get a bucket creating and deleting
+- Work out how to 
 - python for getting files
 - download and restore script
 - Billing alarms
