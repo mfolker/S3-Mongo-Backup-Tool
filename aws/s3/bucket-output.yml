@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: This stack deploys S3 bucket database files are stored in.
+Resources:
+  DatabaseBackupBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::Sub: mongo-backup-bucket-${AWS::Region}
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: AES256
+Outputs:
+  DatabaseBackupBucket:
+    Description: The ARN of the database backup bucket.
+    Value:
+      Fn::GetAtt:
+      - DatabaseBackupBucket
+      - Arn
+    Export:
+      Name:
+        Fn::Join:
+        - ':'
+        - - Ref: AWS::StackName
+          - DatabaseBackupBucket

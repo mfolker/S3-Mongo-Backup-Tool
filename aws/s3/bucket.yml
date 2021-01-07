@@ -1,12 +1,12 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
-Description: This stack deploys S3 bucket
+Description: This stack deploys S3 bucket database files are stored in.
 
 Resources:
   DatabaseBackupBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub database-backup-bucket-${AWS::Region}
+      BucketName: !Sub mongo-backup-bucket-${AWS::Region}
       VersioningConfiguration:
         Status: Enabled
       BucketEncryption:
